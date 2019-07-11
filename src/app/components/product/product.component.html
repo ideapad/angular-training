@@ -1,0 +1,8 @@
+<div class="product">
+  <span>Name:{{product.name}}</span>
+  <span>Description:{{product.description}}</span>
+  <span>Price:{{product.price}}</span>
+  <span>Category:{{product.category}}</span>
+  <button *ngIf="product.isAvailable" (click)="onBuy()">Buy</button>
+</div>
+

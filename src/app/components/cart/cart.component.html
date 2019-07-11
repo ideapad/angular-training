@@ -1,0 +1,6 @@
+<app-product-list *ngIf="isCartEmpty(); else cartIsEmptyBlock"
+  [products]="cartProducts">
+</app-product-list>
+<ng-template #cartIsEmptyBlock>
+  <h2>Cart is empty</h2>
+</ng-template>
