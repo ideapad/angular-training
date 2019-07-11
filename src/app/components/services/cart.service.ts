@@ -7,7 +7,9 @@ import { Injectable } from '@angular/core';
 export class CartService {
   private cartProducts: Product[];
 
-  constructor() { }
+  constructor() { 
+    this.cartProducts = [];
+  }
 
   public getProducts(): Product[] {
     return this.cartProducts;

@@ -15,4 +15,8 @@ export class ProductListComponent implements OnInit {
   ngOnInit() {
   }
 
+  public buyProduct(product: Product) {
+    this.buy.emit(product);
+  }
+
 }

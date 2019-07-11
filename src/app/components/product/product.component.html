@@ -1,8 +1,10 @@
 <div class="product">
-  <span>Name:{{product.name}}</span>
-  <span>Description:{{product.description}}</span>
-  <span>Price:{{product.price}}</span>
-  <span>Category:{{product.category}}</span>
+  <ul>
+    <li>Name:{{product.name}}</li>
+    <li>Description:{{product.description}}</li>
+    <li>Price:{{product.price}}</li>
+    <li>Category:{{product.category}}</li>
+  </ul>
   <button *ngIf="product.isAvailable" (click)="onBuy()">Buy</button>
 </div>
 

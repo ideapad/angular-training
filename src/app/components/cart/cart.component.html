@@ -1,6 +1,13 @@
-<app-product-list *ngIf="isCartEmpty(); else cartIsEmptyBlock"
-  [products]="cartProducts">
-</app-product-list>
-<ng-template #cartIsEmptyBlock>
-  <h2>Cart is empty</h2>
-</ng-template>
+<div class="catalog">
+  <ng-container *ngIf="!isCartEmpty(); else cartIsEmptyBlock">
+    <h2>Cart :</h2>
+    <app-product-list 
+        [products]="cartProducts">
+    </app-product-list>
+  </ng-container>
+
+  <ng-template #cartIsEmptyBlock>
+    <h2>Cart is empty</h2>
+  </ng-template>
+</div>
+
