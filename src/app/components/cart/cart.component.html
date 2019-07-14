@@ -1,0 +1,16 @@
+<div class="catalog">
+  <ng-container *ngIf="(cartProducts$ | async) as cartProducts; else cartIsEmptyBlock">
+    <h2>Cart :</h2>
+    <div class="cart-product" *ngFor="let cartProduct of cartProducts">
+      <ul>
+          <li>Name: {{cartProduct.product.name}}</li>
+          <li>Quantity: {{cartProduct.quantity}}</li>
+      </ul>
+    </div>
+  </ng-container>
+
+  <ng-template #cartIsEmptyBlock>
+    <h2>Cart is empty</h2>
+  </ng-template>
+</div>
+
