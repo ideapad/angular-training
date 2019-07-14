@@ -1,5 +1,5 @@
-import { Product } from './../models/product.model';
 import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
+import { ProductModel } from '../../shared/models/product.model';
 
 @Component({
   selector: 'app-product',
@@ -7,8 +7,8 @@ import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
-  @Input() product: Product;
-  @Output() buy: EventEmitter<Product> = new EventEmitter<Product>();
+  @Input() product: ProductModel;
+  @Output() buy: EventEmitter<ProductModel> = new EventEmitter<ProductModel>();
 
   constructor() { }
 

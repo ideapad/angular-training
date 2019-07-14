@@ -1,6 +1,7 @@
-import { CartService } from './../services/cart.service';
-import { Product } from './../models/product.model';
+import { Observable } from 'rxjs';
+import { CartService } from './services/cart.service';
 import { Component, OnInit } from '@angular/core';
+import { CartModel } from './models/cart.model';
 
 @Component({
   selector: 'app-cart',
@@ -8,16 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  public cartProducts: Product[];
+  public cartProducts$: Observable<CartModel[]>;
 
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
-    this.cartProducts = this.cartService.getProducts();
+    this.cartProducts$ = this.cartService.cartProducts$;
   }
 
-  public isCartEmpty(): boolean {
-    return !this.cartProducts || !this.cartProducts.length;
+  public isCartEmpty(cartProducts: CartModel[]): boolean {
+    return !cartProducts || !cartProducts.length;
   }
 
 }

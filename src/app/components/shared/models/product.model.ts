@@ -1,6 +1,6 @@
 import { Category } from './category.enum';
 
-export class Product {
+export class ProductModel {
   constructor(
     public id: number,
     public name: string,
