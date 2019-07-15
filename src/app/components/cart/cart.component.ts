@@ -11,14 +11,14 @@ import { CartModel } from './models/cart.model';
 export class CartComponent implements OnInit {
   public cartProducts$: Observable<CartModel[]>;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService) {}
 
   ngOnInit() {
     this.cartProducts$ = this.cartService.cartProducts$;
   }
 
+  // не используется?
   public isCartEmpty(cartProducts: CartModel[]): boolean {
     return !cartProducts || !cartProducts.length;
   }
-
 }
