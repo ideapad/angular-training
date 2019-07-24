@@ -10,8 +10,18 @@ import { CartModel } from '../models/cart.model';
 export class CartService {
   private channel = new Subject<CartModel[]>();
   private cartProducts: CartModel[] = [];
+  private totalItemsCount: number = 0;
+  private totalSum: number = 0;
 
   public cartProducts$ = this.channel.asObservable();
+
+  public getTotalItemsCount(): number {
+    return this.totalItemsCount;
+  }
+
+  public getTotalSum(): number {
+    return this.totalSum;
+  }
 
   public addProduct(product: ProductModel) {
     const exstingCartProduct = 
@@ -23,6 +33,9 @@ export class CartService {
       const newCartProduct = new CartModel(product);
       this.cartProducts.push(newCartProduct);
     }
+
+    this.totalItemsCount += 1;
+    this.totalSum += product.price;
 
     this.channel.next(this.cartProducts);
   }

@@ -4,17 +4,25 @@ import { Component, OnInit } from '@angular/core';
 import { CartModel } from './models/cart.model';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  selector: 'app-cart-list',
+  templateUrl: './cart-list.component.html',
+  styleUrls: ['./cart-list.component.scss']
 })
-export class CartComponent implements OnInit {
+export class CartListComponent implements OnInit {
   public cartProducts$: Observable<CartModel[]>;
 
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
     this.cartProducts$ = this.cartService.cartProducts$;
+  }
+
+  get totalItemsCount() {
+    return this.cartService.getTotalItemsCount();
+  }
+
+  get totalSum() {
+    return this.cartService.getTotalSum();
   }
 
   public isCartEmpty(cartProducts: CartModel[]): boolean {
