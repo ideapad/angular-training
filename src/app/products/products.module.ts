@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
-import { ProductComponent } from './product/product.component';
-import { ProductListComponent } from './product-list.component';
+import { ProductComponent } from './components/product/product.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
 import { CommonModule } from '@angular/common';
 
 @NgModule({

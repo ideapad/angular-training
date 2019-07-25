@@ -3,7 +3,9 @@
     <h2>Cart :</h2>
     <app-cart-item 
         *ngFor="let cartProduct of cartProducts"
-        [cartProduct]="cartProduct"> 
+        [cartProduct]="cartProduct"
+        (onRemoveItem)="removeCartItem($event)"
+        (onQuantityChange)="changeQuantity($event)"> 
     </app-cart-item>
   </ng-container>
   <ng-template #cartIsEmptyBlock>

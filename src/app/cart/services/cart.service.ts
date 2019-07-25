@@ -15,15 +15,15 @@ export class CartService {
 
   public cartProducts$ = this.channel.asObservable();
 
-  public getTotalItemsCount(): number {
+  getTotalItemsCount(): number {
     return this.totalItemsCount;
   }
 
-  public getTotalSum(): number {
+  getTotalSum(): number {
     return this.totalSum;
   }
 
-  public addProduct(product: ProductModel) {
+  addProduct(product: ProductModel) {
     const exstingCartProduct = 
       this.cartProducts.find(cartItem => cartItem.product.id === product.id);
 
@@ -31,11 +31,26 @@ export class CartService {
       exstingCartProduct.quantity += 1;
     } else {
       const newCartProduct = new CartModel(product);
+      newCartProduct.quantity = 1;
+
       this.cartProducts.push(newCartProduct);
     }
 
     this.totalItemsCount += 1;
     this.totalSum += product.price;
+
+    this.channel.next(this.cartProducts);
+  }
+
+  updateItemQuantity(item: CartModel, quantity: number) {
+    const itemToUpdate = this.cartProducts.find(c => c.product.id === item.product.id);
+    itemToUpdate.quantity = quantity;
+
+    this.channel.next(this.cartProducts);
+  }
+
+  removeItem(item: CartModel) {
+    this.cartProducts = this.cartProducts.filter(c => c.product.id !== item.product.id);
 
     this.channel.next(this.cartProducts);
   }

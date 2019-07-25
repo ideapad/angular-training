@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
-import { CartService } from './services/cart.service';
 import { Component, OnInit } from '@angular/core';
-import { CartModel } from './models/cart.model';
+import { CartModel } from '../../models/cart.model';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart-list',
@@ -25,8 +25,19 @@ export class CartListComponent implements OnInit {
     return this.cartService.getTotalSum();
   }
 
-  public isCartEmpty(cartProducts: CartModel[]): boolean {
+  isCartEmpty(cartProducts: CartModel[]): boolean {
     return !cartProducts || !cartProducts.length;
+  }
+
+  removeCartItem(item: CartModel) {
+    this.cartService.removeItem(item);
+  }
+
+  changeQuantity(newValue: [CartModel, number]) {
+    const newQuantity = newValue[0];
+    const item = newValue[1];
+
+    this.cartService.updateItemQuantity(newQuantity, item)
   }
 
 }
