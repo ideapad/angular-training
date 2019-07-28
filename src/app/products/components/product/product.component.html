@@ -1,10 +1,9 @@
-<div class="product">
-  <ul>
-    <li>Name:{{product.name}}</li>
-    <li>Description:{{product.description}}</li>
-    <li>Price:{{product.price}}</li>
-    <li>Category:{{product.category}}</li>
-  </ul>
-  <button *ngIf="product.isAvailable" (click)="onBuy()">Buy</button>
+<div class="product" [ngClass]="{'not-available': !product.isAvailable}">
+  <h2>{{product.name}}</h2>
+  <p>{{product.description}}</p>
+  <p class="price">{{product.price | currency}}</p>
+  <p>Category: {{product.category}}</p>
+  <button class="cart-button" [disabled]="!product.isAvailable" (click)="onBuy()"
+    [innerText]="product.isAvailable ? 'Add to Cart' : 'Out of stock'">Add to Cart</button>
 </div>
 

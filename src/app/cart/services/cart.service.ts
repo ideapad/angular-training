@@ -1,5 +1,5 @@
 
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ProductModel } from '../../shared/models/product.model';
 import { CartModel } from '../models/cart.model';
@@ -7,7 +7,7 @@ import { CartModel } from '../models/cart.model';
 @Injectable({
   providedIn: 'root'
 })
-export class CartService {
+export class CartService implements OnDestroy {
   private channel = new Subject<CartModel[]>();
   private cartProducts: CartModel[] = [];
   private totalItemsCount: number = 0;
@@ -24,11 +24,11 @@ export class CartService {
   }
 
   addProduct(product: ProductModel) {
-    const exstingCartProduct = 
+    const existingCartProduct = 
       this.cartProducts.find(cartItem => cartItem.product.id === product.id);
 
-    if(exstingCartProduct) {
-      exstingCartProduct.quantity += 1;
+    if(existingCartProduct) {
+      existingCartProduct.quantity += 1;
     } else {
       const newCartProduct = new CartModel(product);
       newCartProduct.quantity = 1;
@@ -50,8 +50,15 @@ export class CartService {
   }
 
   removeItem(item: CartModel) {
+    this.totalItemsCount -= item.quantity;
+    this.totalSum -= item.quantity * item.product.price;
+
     this.cartProducts = this.cartProducts.filter(c => c.product.id !== item.product.id);
 
     this.channel.next(this.cartProducts);
+  }
+
+  ngOnDestroy() {
+    this.channel.complete();
   }
 }
