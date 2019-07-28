@@ -1,0 +1,9 @@
+<ul appHighlight>
+    <li>Name: {{cartProduct.product.name}}</li>
+    <li>Quantity:
+        <input type="number" name="quantity" min="1" 
+            [ngModel]="cartProduct.quantity"
+            (input)="changeQuantity($event.target.value)">
+    </li>
+    <button (click)="removeItem()">Remove from cart</button>
+</ul>
