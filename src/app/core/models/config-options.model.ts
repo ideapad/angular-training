@@ -1,5 +1,6 @@
 export class ConfigOptions {
-    id: number;
-    login: string;
-    email: string;
+    constructor(
+        public id: number,
+        public login: string,
+        public email: string) { }
 }
