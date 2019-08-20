@@ -7,10 +7,12 @@ import { OrdersModule } from './orders/orders.module';
 import { CoreModule } from './core/core.module';
 import { CartModule } from './cart/cart.module';
 import { ProductsModule } from './products/products.module';
+import { AboutComponent } from './layout/components/about/about.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

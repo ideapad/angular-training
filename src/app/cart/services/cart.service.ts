@@ -23,21 +23,21 @@ export class CartService implements OnDestroy {
     return this.totalSum;
   }
 
-  addProduct(product: ProductModel) {
+  addProduct(product: ProductModel, quantity: number = 1) {
     const existingCartProduct = 
       this.cartProducts.find(cartItem => cartItem.product.id === product.id);
 
     if(existingCartProduct) {
-      existingCartProduct.quantity += 1;
+      existingCartProduct.quantity += quantity;
     } else {
       const newCartProduct = new CartModel(product);
-      newCartProduct.quantity = 1;
+      newCartProduct.quantity = quantity;
 
       this.cartProducts.push(newCartProduct);
     }
 
-    this.totalItemsCount += 1;
-    this.totalSum += product.price;
+    this.totalItemsCount += quantity;
+    this.totalSum += product.price * quantity;
 
     this.channel.next(this.cartProducts);
   }
